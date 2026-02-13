@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Chef's hat (toque) -->
+  <!-- Hat puffs at top -->
+  <circle cx="30" cy="28" r="18" fill="#fff" stroke="#ddd" stroke-width="2"/>
+  <circle cx="50" cy="20" r="20" fill="#fff" stroke="#ddd" stroke-width="2"/>
+  <circle cx="70" cy="28" r="18" fill="#fff" stroke="#ddd" stroke-width="2"/>
+  <!-- Hat band/base -->
+  <rect x="20" y="40" width="60" height="35" fill="#fff" stroke="#ddd" stroke-width="2"/>
+  <!-- Hat band stripe -->
+  <rect x="20" y="68" width="60" height="8" fill="#ff6b6b"/>
+  <!-- Face suggestion -->
+  <circle cx="38" cy="88" r="3" fill="#333"/>
+  <circle cx="62" cy="88" r="3" fill="#333"/>
+  <path d="M42 94 Q50 98 58 94" stroke="#333" stroke-width="2" fill="none" stroke-linecap="round"/>
+</svg>

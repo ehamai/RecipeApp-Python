@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Generator - AI-Powered Recipes</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Toast Notifications Container -->
+    <div id="toast-container"></div>
+
+    <!-- Login View -->
+    <div id="login-view" class="view">
+        <div class="login-container">
+            <div class="login-card">
+                <div class="logo">
+                    <span class="logo-icon">🍳</span>
+                    <h1>Recipe Generator</h1>
+                </div>
+                <p class="tagline">AI-powered recipes from your ingredients</p>
+                <button id="login-btn" class="btn btn-primary btn-large" onclick="login()">
+                    <svg class="github-icon" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    Sign in with GitHub
+                </button>
+                <p class="login-note">Requires GitHub Copilot subscription for AI access</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App View -->
+    <div id="app-view" class="view hidden">
+        <header class="app-header">
+            <div class="header-content">
+                <div class="header-logo">
+                    <span class="logo-icon-small">🍳</span>
+                    <span class="header-title">Recipe Generator</span>
+                </div>
+                <button id="logout-btn" class="btn btn-outline" onclick="logout()">Logout</button>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- Ingredient Selection Section -->
+            <section class="ingredient-section">
+                <h2>Select Your Ingredients</h2>
+                <p class="section-description">Choose ingredients you have available, then generate recipe ideas.</p>
+
+                <!-- Ingredient Categories -->
+                <div class="ingredient-categories">
+                    <!-- Proteins -->
+                    <div class="category">
+                        <h3>Proteins</h3>
+                        <div class="ingredient-grid">
+                            <label class="ingredient-checkbox">
+                                <input type="checkbox" value="chicken">
+                                <span class="checkbox-label">🍗 Chicken</span>
+                            </label>
+                            <label class="ingredient-checkbox">
+                                <input type="checkbox" value="beef">
+                                <span class="checkbox-label">🥩 Beef</span>
+                            </label>
+                            <label class="ingredient-checkbox">
+                                <input type="checkbox" value="pork">
+                                <span class="checkbox-label">🥓 Pork</span>
+                            </label>
+                            <label class="ingredient-checkbox">
+                                <input type="checkbox" value="fish">
+                                <span class="checkbox-label">🐟 Fish</span>
+                            </label>
+                            <label class="ingredient-checkbox">
+                                <input type="checkbox" value="eggs">
+                                <span class="checkbox-label">🥚 Eggs</span>
+                            </label>
+                            <label class="ingredient-checkbox">
+                                <input type="checkbox" value="tofu">
+                                <span class="checkbox-label">🧈 Tofu</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Dairy -->
+                    <div class="category">
+                        <h3>Dairy</h3>
+                        <div class="ingredient-grid">
+                            <label class="ingredient-checkbox">
+                                <input type="checkbox" value="milk">
+                                <span class="checkbox-label">🥛 Milk</span>
+                            </label>
+                            <label class="ingredient-checkbox">
+                                <input type="checkbox" value="cheese">
+                                <span class="checkbox-label">🧀 Cheese</span>
+                            </label>
+                            <label class="ingredient-checkbox">
+                                <input type="checkbox" value="butter">
+                                <span class="checkbox-label">🧈 Butter</span>
+                            </label>
+                            <label class="ingredient-checkbox">
+                                <input type="checkbox" value="yogurt">
+                                <span class="checkbox-label">🥛 Yogurt</span>
+                            </label>
+                            <label class="ingredient-checkbox">
+                                <input type="checkbox" value="cream">
+                                <span class="checkbox-label">🥛 Cream</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Grains -->
+                    <div class="category">
+                        <h3>Grains</h3>
+                        <div class="ingredient-grid">
+                            <label class="ingredient-checkbox">
+                                <input type="checkbox" value="rice">
+                                <span class="checkbox-label">🍚 Rice</span>
+                            </label>
+                            <label class="ingredient-checkbox">
+                                <input type="checkbox" value="pasta">
+                                <span class="checkbox-label">🍝 Pasta</span>
+                            </label>
+                            <label class="ingredient-checkbox">
+                                <input type="checkbox" value="bread">
+                                <span class="checkbox-label">🍞 Bread</span>
+                            </label>
+                            <label class="ingredient-checkbox">
+                                <input type="checkbox" value="flour">
+                                <span class="checkbox-label">🌾 Flour</span>
+                            </label>
+                            <label class="ingredient-checkbox">
+                                <input type="checkbox" value="oats">
+                                <span class="checkbox-label">🥣 Oats</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Vegetables -->
+                    <div class="category">
+                        <h3>Vegetables</h3>
+                        <div class="ingredient-grid">
+                            <label class="ingredient-checkbox">
+                                <input type="checkbox" value="onions">
+                                <span class="checkbox-label">🧅 Onions</span>
+                            </label>
+                            <label class="ingredient-checkbox">
+                                <input type="checkbox" value="garlic">
+                                <span class="checkbox-label">🧄 Garlic</span>
+                            </label>
+                            <label class="ingredient-checkbox">
+                                <input type="checkbox" value="tomatoes">
+                                <span class="checkbox-label">🍅 Tomatoes</span>
+                            </label>
+                            <label class="ingredient-checkbox">
+                                <input type="checkbox" value="potatoes">
+                                <span class="checkbox-label">🥔 Potatoes</span>
+                            </label>
+                            <label class="ingredient-checkbox">
+                                <input type="checkbox" value="carrots">
+                                <span class="checkbox-label">🥕 Carrots</span>
+                            </label>
+                            <label class="ingredient-checkbox">
+                                <input type="checkbox" value="peppers">
+                                <span class="checkbox-label">🫑 Peppers</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Pantry -->
+                    <div class="category">
+                        <h3>Pantry Staples</h3>
+                        <div class="ingredient-grid">
+                            <label class="ingredient-checkbox">
+                                <input type="checkbox" value="olive oil">
+                                <span class="checkbox-label">🫒 Olive Oil</span>
+                            </label>
+                            <label class="ingredient-checkbox">
+                                <input type="checkbox" value="salt">
+                                <span class="checkbox-label">🧂 Salt</span>
+                            </label>
+                            <label class="ingredient-checkbox">
+                                <input type="checkbox" value="pepper">
+                                <span class="checkbox-label">🌶️ Pepper</span>
+                            </label>
+                            <label class="ingredient-checkbox">
+                                <input type="checkbox" value="sugar">
+                                <span class="checkbox-label">🍬 Sugar</span>
+                            </label>
+                            <label class="ingredient-checkbox">
+                                <input type="checkbox" value="vinegar">
+                                <span class="checkbox-label">🍶 Vinegar</span>
+                            </label>
+                            <label class="ingredient-checkbox">
+                                <input type="checkbox" value="soy sauce">
+                                <span class="checkbox-label">🥢 Soy Sauce</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Custom Ingredient Input -->
+                <div class="custom-ingredient">
+                    <h3>Add Custom Ingredients</h3>
+                    <div class="custom-input-wrapper">
+                        <input 
+                            type="text" 
+                            id="custom-ingredient-input" 
+                            placeholder="Type an ingredient..."
+                            maxlength="50"
+                        >
+                        <button id="add-ingredient-btn" class="btn btn-secondary" onclick="addCustomIngredient()">
+                            Add
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Selected Ingredients Display -->
+                <div class="selected-ingredients">
+                    <h3>Selected Ingredients <span id="ingredient-count">(0)</span></h3>
+                    <div id="selected-tags" class="selected-tags">
+                        <p class="empty-selection">No ingredients selected yet</p>
+                    </div>
+                </div>
+
+                <!-- Generate Button -->
+                <div class="generate-section">
+                    <button 
+                        id="generate-btn" 
+                        class="btn btn-primary btn-large"
+                        onclick="generateRecipes()"
+                        disabled
+                    >
+                        <span class="btn-text">Generate Recipes</span>
+                        <span class="btn-loader hidden">
+                            <span class="spinner"></span>
+                            Generating...
+                        </span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Recipes Section -->
+            <section class="recipes-section">
+                <h2>Your Recipes</h2>
+                <div id="recipes-container" class="recipes-container">
+                    <div class="empty-recipes">
+                        <span class="empty-icon">📖</span>
+                        <p>Select ingredients and generate recipes to see them here</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Recipe Detail Modal -->
+    <div id="recipe-modal" class="modal hidden">
+        <div class="modal-backdrop" onclick="closeModal()"></div>
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div id="modal-body">
+                <!-- Recipe details will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
