@@ -3,28 +3,37 @@
    ============================================================================= */
 
 :root {
-    /* Colors */
-    --color-primary: #e85d04;
-    --color-primary-dark: #d35400;
-    --color-primary-light: #ff8c42;
+    /* Colors - Neon Theme */
+    --color-primary: #00f0ff;
+    --color-primary-dark: #00c4cc;
+    --color-primary-light: #00f0ff;
     
-    --color-success: #22c55e;
-    --color-warning: #f59e0b;
-    --color-danger: #ef4444;
+    --color-success: #39ff14;
+    --color-warning: #ffff00;
+    --color-danger: #ff3131;
     
-    --color-gray-50: #fafafa;
-    --color-gray-100: #f4f4f5;
-    --color-gray-200: #e4e4e7;
-    --color-gray-300: #d4d4d8;
-    --color-gray-400: #a1a1aa;
-    --color-gray-500: #71717a;
-    --color-gray-600: #52525b;
-    --color-gray-700: #3f3f46;
-    --color-gray-800: #27272a;
-    --color-gray-900: #18181b;
+    --color-gray-50: #0a0a0f;
+    --color-gray-100: #111118;
+    --color-gray-200: #1a1a25;
+    --color-gray-300: #2a2a3a;
+    --color-gray-400: #4a4a6a;
+    --color-gray-500: #7a7a9a;
+    --color-gray-600: #a0a0c0;
+    --color-gray-700: #c0c0dd;
+    --color-gray-800: #d8d8f0;
+    --color-gray-900: #eeeeff;
     
-    --color-white: #ffffff;
-    --color-black: #000000;
+    --color-white: #12121e;
+    --color-black: #eeeeff;
+    
+    /* Neon glow effects */
+    --neon-cyan: #00f0ff;
+    --neon-magenta: #ff00ff;
+    --neon-purple: #b946ff;
+    --neon-green: #39ff14;
+    --glow-cyan: 0 0 10px #00f0ff, 0 0 20px rgba(0, 240, 255, 0.3);
+    --glow-magenta: 0 0 10px #ff00ff, 0 0 20px rgba(255, 0, 255, 0.3);
+    --glow-purple: 0 0 10px #b946ff, 0 0 20px rgba(185, 70, 255, 0.3);
     
     /* Typography */
     --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
@@ -56,11 +65,11 @@
     --radius-xl: 1rem;
     --radius-full: 9999px;
     
-    /* Shadows */
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    /* Shadows - Neon glows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+    --shadow-md: 0 4px 12px rgba(0, 240, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 8px 24px rgba(0, 240, 255, 0.15), 0 4px 8px rgba(0, 0, 0, 0.3);
+    --shadow-xl: 0 12px 36px rgba(185, 70, 255, 0.2), 0 8px 16px rgba(0, 0, 0, 0.4);
     
     /* Transitions */
     --transition-fast: 150ms ease;
@@ -148,12 +157,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-primary {
-    background-color: var(--color-primary);
-    color: var(--color-white);
+    background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+    color: #0a0a0f;
+    font-weight: 600;
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
 }
 
 .btn-primary:hover:not(:disabled) {
-    background-color: var(--color-primary-dark);
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.5), 0 0 50px rgba(185, 70, 255, 0.3);
+    filter: brightness(1.1);
 }
 
 .btn-secondary {
@@ -167,12 +179,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-outline {
     background-color: transparent;
-    border: 1px solid var(--color-gray-300);
-    color: var(--color-gray-700);
+    border: 1px solid rgba(0, 240, 255, 0.3);
+    color: var(--neon-cyan);
 }
 
 .btn-outline:hover:not(:disabled) {
-    background-color: var(--color-gray-100);
+    background-color: rgba(0, 240, 255, 0.1);
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
 }
 
 .btn-large {
@@ -190,17 +203,18 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
     justify-content: center;
     padding: var(--spacing-4);
-    background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
+    background: linear-gradient(135deg, #0a0014 0%, #0d001a 40%, #001a1a 100%);
 }
 
 .login-card {
-    background: var(--color-white);
+    background: rgba(18, 18, 30, 0.9);
     padding: var(--spacing-10);
     border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-xl);
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.15), 0 0 60px rgba(185, 70, 255, 0.1);
     text-align: center;
     max-width: 400px;
     width: 100%;
+    border: 1px solid rgba(0, 240, 255, 0.2);
 }
 
 .logo {
@@ -217,7 +231,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .logo h1 {
     font-size: var(--font-size-2xl);
-    color: var(--color-gray-900);
+    color: var(--neon-cyan);
+    text-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
 }
 
 .tagline {
@@ -256,14 +271,16 @@ h1, h2, h3, h4, h5, h6 {
     font-size: var(--font-size-3xl);
     font-weight: 700;
     letter-spacing: 0.2em;
-    color: var(--color-primary);
-    background: var(--color-gray-100);
+    color: var(--neon-cyan);
+    background: rgba(0, 240, 255, 0.05);
     padding: var(--spacing-4) var(--spacing-6);
     border-radius: var(--radius-lg);
     margin-bottom: var(--spacing-2);
     cursor: pointer;
     transition: all var(--transition-base);
     user-select: all;
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+    border: 1px solid rgba(0, 240, 255, 0.2);
 }
 
 .user-code:hover {
@@ -293,7 +310,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .device-hint a {
-    color: var(--color-primary);
+    color: var(--neon-cyan);
     text-decoration: none;
 }
 
@@ -306,11 +323,12 @@ h1, h2, h3, h4, h5, h6 {
    ============================================================================= */
 
 .app-header {
-    background: var(--color-white);
-    border-bottom: 1px solid var(--color-gray-200);
+    background: rgba(18, 18, 30, 0.95);
+    border-bottom: 1px solid rgba(0, 240, 255, 0.15);
     position: sticky;
     top: 0;
     z-index: 100;
+    backdrop-filter: blur(10px);
 }
 
 .header-content {
@@ -335,7 +353,8 @@ h1, h2, h3, h4, h5, h6 {
 .header-title {
     font-size: var(--font-size-lg);
     font-weight: 600;
-    color: var(--color-gray-900);
+    color: var(--neon-cyan);
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
 }
 
 /* =============================================================================
@@ -407,13 +426,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .ingredient-checkbox input[type="checkbox"]:checked + .checkbox-label {
-    background: var(--color-primary-light);
-    border-color: var(--color-primary);
-    color: var(--color-white);
+    background: rgba(0, 240, 255, 0.15);
+    border-color: var(--neon-cyan);
+    color: var(--neon-cyan);
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
 }
 
 .ingredient-checkbox:hover .checkbox-label {
-    border-color: var(--color-primary-light);
+    border-color: var(--neon-purple);
+    box-shadow: 0 0 8px rgba(185, 70, 255, 0.2);
 }
 
 /* Custom Ingredient Input */
@@ -444,7 +465,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .custom-input-wrapper input:focus {
     outline: none;
-    border-color: var(--color-primary);
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+}
+
+.custom-input-wrapper input {
+    background: rgba(18, 18, 30, 0.8);
+    color: var(--color-gray-900);
 }
 
 /* Selected Ingredients */
@@ -480,16 +507,18 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
     gap: var(--spacing-2);
     padding: var(--spacing-2) var(--spacing-3);
-    background: var(--color-primary);
-    color: var(--color-white);
+    background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(185, 70, 255, 0.2));
+    color: var(--neon-cyan);
     border-radius: var(--radius-full);
     font-size: var(--font-size-sm);
+    border: 1px solid rgba(0, 240, 255, 0.3);
+    box-shadow: 0 0 8px rgba(0, 240, 255, 0.15);
 }
 
 .tag-remove {
     background: none;
     border: none;
-    color: var(--color-white);
+    color: var(--neon-cyan);
     cursor: pointer;
     font-size: var(--font-size-lg);
     line-height: 1;
@@ -520,7 +549,7 @@ h1, h2, h3, h4, h5, h6 {
 .spinner {
     width: 18px;
     height: 18px;
-    border: 2px solid var(--color-white);
+    border: 2px solid #0a0a0f;
     border-top-color: transparent;
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
@@ -580,17 +609,19 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Recipe Card */
 .recipe-card {
-    background: var(--color-white);
+    background: rgba(18, 18, 30, 0.8);
     border-radius: var(--radius-xl);
     padding: var(--spacing-6);
     box-shadow: var(--shadow-md);
     cursor: pointer;
     transition: all var(--transition-base);
+    border: 1px solid rgba(0, 240, 255, 0.1);
 }
 
 .recipe-card:hover {
     transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.2), 0 0 40px rgba(185, 70, 255, 0.15);
+    border-color: rgba(0, 240, 255, 0.4);
 }
 
 .recipe-card h3 {
@@ -626,17 +657,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .badge-easy {
-    background: rgba(34, 197, 94, 0.1);
-    color: var(--color-success);
+    background: rgba(57, 255, 20, 0.1);
+    color: var(--neon-green);
 }
 
 .badge-medium {
-    background: rgba(245, 158, 11, 0.1);
+    background: rgba(255, 255, 0, 0.1);
     color: var(--color-warning);
 }
 
 .badge-hard {
-    background: rgba(239, 68, 68, 0.1);
+    background: rgba(255, 49, 49, 0.1);
     color: var(--color-danger);
 }
 
@@ -647,14 +678,15 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Skeleton Loader */
 .skeleton-card {
-    background: var(--color-white);
+    background: rgba(18, 18, 30, 0.8);
     border-radius: var(--radius-xl);
     padding: var(--spacing-6);
     box-shadow: var(--shadow-md);
+    border: 1px solid rgba(0, 240, 255, 0.1);
 }
 
 .skeleton {
-    background: linear-gradient(90deg, var(--color-gray-200) 25%, var(--color-gray-100) 50%, var(--color-gray-200) 75%);
+    background: linear-gradient(90deg, rgba(0, 240, 255, 0.05) 25%, rgba(185, 70, 255, 0.08) 50%, rgba(0, 240, 255, 0.05) 75%);
     background-size: 200% 100%;
     animation: shimmer 1.5s infinite;
     border-radius: var(--radius-sm);
@@ -713,20 +745,21 @@ h1, h2, h3, h4, h5, h6 {
 .modal-backdrop {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(4px);
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(6px);
 }
 
 .modal-content {
     position: relative;
-    background: var(--color-white);
+    background: #12121e;
     border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-xl);
+    box-shadow: 0 0 40px rgba(0, 240, 255, 0.2), 0 0 80px rgba(185, 70, 255, 0.1);
     max-width: 700px;
     width: 100%;
     max-height: 90vh;
     overflow-y: auto;
     padding: var(--spacing-8);
+    border: 1px solid rgba(0, 240, 255, 0.2);
 }
 
 .modal-close {
@@ -798,8 +831,9 @@ h1, h2, h3, h4, h5, h6 {
     content: "•";
     position: absolute;
     left: 0;
-    color: var(--color-primary);
+    color: var(--neon-cyan);
     font-weight: bold;
+    text-shadow: 0 0 6px rgba(0, 240, 255, 0.5);
 }
 
 .modal-section ol {
@@ -812,7 +846,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .modal-section ol li::marker {
-    color: var(--color-primary);
+    color: var(--neon-magenta);
     font-weight: 600;
 }
 
@@ -831,16 +865,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .toast {
-    background: var(--color-white);
+    background: rgba(18, 18, 30, 0.95);
     padding: var(--spacing-4) var(--spacing-5);
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
     display: flex;
     align-items: center;
     gap: var(--spacing-3);
     min-width: 300px;
     max-width: 400px;
     animation: slideIn var(--transition-base) ease;
+    border: 1px solid rgba(0, 240, 255, 0.1);
 }
 
 @keyframes slideIn {
