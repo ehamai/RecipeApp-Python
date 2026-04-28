@@ -51,15 +51,15 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.__clientidsecretname__ }}
-          tenant-id: ${{ secrets.__tenantidsecretname__ }}
-          subscription-id: ${{ secrets.__subscriptionidsecretname__ }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_65471977015144018DB22FDAEDA5E95D }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_0B2F3B2C49B54B988BA4C14F9AB74123 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_D1D86F29E8C244AE8303072728DF6B38 }}
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'eh-code-sidecar'
-          slot-name: 'production'
+          slot-name: 'Production'
           package: .
           
